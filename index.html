@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram Mini App</title>
-    <script src="https://unpkg.com/@tonconnect/sdk@latest"></script>
+    <script src="https://unpkg.com/@tonconnect/ui@latest"></script> <!-- Correct SDK -->
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -54,7 +54,7 @@
             document.getElementById("connectWallet").addEventListener("click", async () => {
                 console.log("Connect Wallet Clicked 🟢");
                 try {
-                    await tonConnectUI.connect();
+                    await tonConnectUI.connectWallet();
                     alert('Wallet Connected!');
                 } catch (error) {
                     console.error('Wallet connection failed:', error);
