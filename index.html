@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram Mini App</title>
+    <!-- Load TON Connect UI -->
     <script src="https://cdn.jsdelivr.net/npm/@tonconnect/ui@2.0.11/dist/tonconnect-ui.min.js"></script>
     <style>
         body {
@@ -43,28 +44,37 @@
         document.addEventListener("DOMContentLoaded", async () => {
             console.log("DOM Loaded ✅");
 
-            // Initialize TON Connect UI
-            const tonConnectUI = new TONConnectUI.TONConnectUI({
-                manifestUrl: "https://pedramhatef.github.io/ind/tonconnect-manifest.json"
-            });
+            if (typeof TonConnectUI === "undefined") {
+                console.error("❌ TonConnectUI is not defined. Check if the script loaded correctly.");
+                return;
+            }
 
-            console.log("TON Connect UI initialized ✅");
+            try {
+                const tonConnectUI = new TonConnectUI.TonConnectUI({
+                    manifestUrl: "https://pedramhatef.github.io/ind/tonconnect-manifest.json"
+                });
 
-            // Start Game Button Click Event
-            document.getElementById("start-game").addEventListener("click", () => {
-                alert("Game Started!");
-            });
+                console.log("TON Connect UI initialized ✅");
 
-            // Connect Wallet Button Click Event
-            document.getElementById("connect-wallet").addEventListener("click", async () => {
-                try {
-                    await tonConnectUI.connectWallet();
-                    alert("Wallet Connected!");
-                } catch (error) {
-                    console.error("Wallet connection failed:", error);
-                    alert("Failed to connect wallet.");
-                }
-            });
+                // Start Game Button Click Event
+                document.getElementById("start-game").addEventListener("click", () => {
+                    alert("Game Started!");
+                });
+
+                // Connect Wallet Button Click Event
+                document.getElementById("connect-wallet").addEventListener("click", async () => {
+                    try {
+                        await tonConnectUI.connectWallet();
+                        alert("Wallet Connected!");
+                    } catch (error) {
+                        console.error("Wallet connection failed:", error);
+                        alert("Failed to connect wallet.");
+                    }
+                });
+
+            } catch (error) {
+                console.error("Error initializing TonConnectUI:", error);
+            }
         });
     </script>
 </body>
