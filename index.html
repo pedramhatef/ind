@@ -42,12 +42,17 @@
     <button id="startGame">Start Game</button>
 
     <script>
-        (async function() {
+        console.log("Script Loaded ✅");
+
+        document.addEventListener("DOMContentLoaded", async function () {
+            console.log("DOM Loaded ✅");
+
             const tonConnectUI = new TONConnectUI({
                 manifestUrl: 'https://pedramhatef.github.io/my-twa/tonconnect-manifest.json'
             });
 
             document.getElementById("connectWallet").addEventListener("click", async () => {
+                console.log("Connect Wallet Clicked 🟢");
                 try {
                     await tonConnectUI.connect();
                     alert('Wallet Connected!');
@@ -58,9 +63,12 @@
             });
 
             document.getElementById("startGame").addEventListener("click", () => {
+                console.log("Start Game Clicked 🟢");
                 alert("Game Started!");
             });
-        })();
+
+            console.log("Event Listeners Attached ✅");
+        });
     </script>
 </body>
 </html>
